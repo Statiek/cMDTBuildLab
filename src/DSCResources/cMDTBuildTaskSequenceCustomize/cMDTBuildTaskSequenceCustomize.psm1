@@ -88,7 +88,7 @@ class cMDTBuildTaskSequenceCustomize
     [void] Set()
     {
         $TS = $this.LoadTaskSequence()
-                
+
         # Set node:
         # $group     - 1st level
         # $AddGroup  - Group to add
@@ -290,7 +290,7 @@ class cMDTBuildTaskSequenceCustomize
         $Step.SetAttribute("successCodeList", "0 3010")
         $Step.SetAttribute("type", "BDD_InstallRoles")
         $Step.SetAttribute("runIn", "WinPEandFullOS")
-                                                
+
         $varList = $TS.CreateElement("defaultVarList")
         $varName = $TS.CreateElement("variable")
         $varName.SetAttribute("name", "OSRoleIndex")
@@ -326,7 +326,7 @@ class cMDTBuildTaskSequenceCustomize
         $Step.SetAttribute("successCodeList", "0 3010")
         $Step.SetAttribute("type", "BDD_InstallApplication")
         $Step.SetAttribute("runIn", "WinPEandFullOS")
-                                        
+
         $varList = $TS.CreateElement("defaultVarList")
         $varName = $TS.CreateElement("variable")
         $varName.SetAttribute("name", "ApplicationGUID")
@@ -339,7 +339,7 @@ class cMDTBuildTaskSequenceCustomize
 
         $varName.AppendChild($TS.CreateTextNode($($App.guid))) | Out-Null
         $varList.AppendChild($varName) | Out-Null
-                                                
+
         $varName = $TS.CreateElement("variable")
         $varName.SetAttribute("name", "ApplicationSuccessCodes")
         $varName.SetAttribute("property", "ApplicationSuccessCodes")
@@ -397,23 +397,21 @@ class cMDTBuildTaskSequenceCustomize
 
     [void] RunPowerShellScript($TS, $Step)
     {
-        
         $Step.SetAttribute("successCodeList", "0 3010")
         $Step.SetAttribute("type", "BDD_RunPowerShellAction")
-        
-        $varList = $TS.CreateElement("defaultVarList")
 
+        $varList = $TS.CreateElement("defaultVarList")
         $varName = $TS.CreateElement("variable")
         $varName.SetAttribute("name", "ScriptName")
         $varName.SetAttribute("property", "ScriptName")
-        $varName.AppendChild($TS.CreateTextNode($this.PSCommand)) | Out-Null     
-        $varList.AppendChild($varName) | Out-Null
+        $varName.AppendChild($TS.CreateTextNode($this.PSCommand)) | Out-Null
 
+        $varList.AppendChild($varName) | Out-Null
         $varName = $TS.CreateElement("variable")
         $varName.SetAttribute("name", "Parameters")
         $varName.SetAttribute("property", "Parameters")
         $varName.AppendChild($TS.CreateTextNode($this.PSParameters)) | Out-Null
-        $varList.AppendChild($varName) | Out-Null     
+        $varList.AppendChild($varName) | Out-Null
 
         $varName = $TS.CreateElement("variable")
         $varName.SetAttribute("name", "PackageID")
@@ -426,7 +424,6 @@ class cMDTBuildTaskSequenceCustomize
         $Step.AppendChild($varList) | Out-Null
         $Step.AppendChild($action) | Out-Null
     }
-
 
     [void] RestartComputer($TS, $Step)
     {

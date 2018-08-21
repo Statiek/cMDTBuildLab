@@ -1,13 +1,15 @@
 $moduleName     = "cMDTBuildLab"
 $moduleGuid     = "df45de26-88b1-4a95-98af-b798fde1424f"
 $year           = (Get-Date).Year
-$moduleVersion  = "2.2.0"
+$moduleVersion  = "2.3.0"
 $releaseNotes  = "
-* Update Microsoft Deployment Toolkit (6.3.8450.1000)
-* Update List of Removed Default Apps for Windows 10 Version 1709
-* Tested with latest Windows 10 Version 1709 ISO (December 2017)
-* Fix bugs at cMDTBuildTaskSequenceCustomize (thanks to @FLeven)
-* Fix issue with MDTBuildLab$ share rights (thanks to @FLeven)
+* Change scripts for cusomize default layout: Do not forget to delete the folder E:\Source\Set-Startlayout before upgrade
+* Fix issue with remove default Appx on Windows 10. Thanks to @FLeven
+* ADK v.1803 (Build: 10.1.17134.1). Do not forget uninstall ADK v.1709 before upgrade
+* Update Windows Server Semi-Annual Channel to 1803
+* Update list of removed default Appx for Windows 10 1803: Do not forget to delete the folder E:\Source\Scripts before upgrade
+* Bugfix: Delete default Windows 10 apps did not work
+* Added Run PowerShell Script function: close Issue #4. Thanks for @Statiek.
 "
 $allResources   = @( Get-ChildItem -Path $PSScriptRoot\src\DSCResources\*.psm1 -ErrorAction SilentlyContinue -Recurse | Sort-Object)
 $allFunctions   = @( Get-ChildItem -Path $PSScriptRoot\src\Public\*.ps1 -ErrorAction SilentlyContinue -Recurse | Sort-Object)
